@@ -20,6 +20,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding-bottom:2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 3rem;
+    transition: all 0.3s ease;
 }
 
 .logo {
@@ -52,6 +59,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     min-height: 85vh;
+    padding-top: 5rem;
 }
 
 .title-section {
@@ -163,6 +171,7 @@ main h2 {
     right: -14%;
     width: 130%;
     height: 130%;
+    z-index: -1;
 }
 
 
@@ -170,7 +179,7 @@ main h2 {
 /* ABOUT SECTION */
 .about-section {
     width: 100%;
-    margin-top: 20rem;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,7 +197,8 @@ main h2 {
 .bento-grid {
     position: relative;
     display: grid;
-    height: 90vh;
+    height: auto;
+    min-height: 60vh;
     width: 90%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
@@ -203,18 +213,16 @@ main h2 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     padding: 2rem;
-    transition: transform 0.3s ease;
-                border-color: 0.3s ease;
-                box-shadow: 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;            
     overflow: hidden;
 }
 
 /* Card specific areas */
-    .intro { grid-area: intro; min-height: 300px;}
-    .tech {grid-area: tech; min-height: 450px;}
-    .time { grid-area: time; min-height: 220px;}
-    .passion { grid-area: passion; min-height: 220px;}
+    .intro { grid-area: intro; min-height: 250px;}
+    .tech {grid-area: tech; min-height: 400px;}
+    .time { grid-area: time; min-height: 180px;}
+    .passion { grid-area: passion; min-height: 180px;}
 
     
 /* HOVER EFFECTS */
@@ -251,6 +259,30 @@ main h2 {
     line-height: 1.4;
     margin-top: 1rem;
     max-width: 20rem;
+}
+
+/* Tech Stack Categories */
+.tech-category {
+    margin-top: 1.2rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tech-category h4 {
+    font-size: 0.85rem;
+    color: #7ce9e6;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.tech-category p {
+    font-size: 0.8rem;
+    color: #9b9b9b;
+    line-height: 1.5;
 }
 
 .bento-grid .background-img {
@@ -303,7 +335,8 @@ main h2 {
 /* PROJECTS SECTION */
 .projects-section {
     width: 100%;
-    margin-top: 70rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -336,7 +369,7 @@ main h2 {
     width: var(--width);
     height: var(--height);
     position: absolute;
-    left: 80%;
+    left: 100%;
     animation: autorun 10s linear infinite;
     transition: filter 0.5s;
     animation-delay: calc( (10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;
@@ -372,8 +405,8 @@ main h2 {
 /* CONTACT SECTION */
 .contact-section {
     padding: 60px 0;
-    margin-top: 20rem;
-    margin-bottom: 10rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
     position: relative;
 }
 
@@ -405,19 +438,16 @@ main h2 {
 }
 
 .info-card {
-    background-color: 1e1e1e;
+    background-color: #1e1e1e;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
+    padding: 30px;
 }
 
 .info-card:hover {
     transform: translateY(-5px);
-}
-
-.info-card {
-    padding: 30px;
 }
 
 .info-card h3 {
@@ -470,7 +500,7 @@ main h2 {
 
 .social-link a:hover {
     background-color: #7ce9e6;
-    color: lightgray;
+    color: #1a1a1a;
 }
 
 /* FORM STYLES */
@@ -512,9 +542,14 @@ textarea.form-control {
     transition: all 0.3s ease;
 }
 
-.message-btn:hover {
+.message-btn:hover:not(:disabled) {
     background-color: #7ce9e6;
     color: #131314;
+}
+
+.message-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .success-message {
@@ -526,16 +561,22 @@ textarea.form-control {
     display: none;
 }
 
+.error-message {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: none;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    align-items: center;
+    position: relative;
     padding: 2rem 4rem;
     background-color: rgba(124, 233, 230, 0.1);
-    position: relative;
 }
 
 .box-icons {
@@ -563,7 +604,8 @@ footer {
     .bento-grid {
         position: relative;
         display: grid;
-        height: 80vh;
+        height: auto;
+        min-height: 50vh;
     }
     
     .card-title {
@@ -576,15 +618,16 @@ footer {
     }    
 
     .model-box {
-        right: 20%;
-        top: 10%;
+        right: -5%;
+        top: 60%;
+        opacity: 0.3;
     }
 
     .intro {min-height: 500px;}
     .time {grid-area: time; min-height: 300px;}
 
     .projects-section {
-        margin-top: 40rem;
+        margin-top: 3rem;
     }    
 
     .slider .list .item {
@@ -638,7 +681,7 @@ footer {
     }
 
     .projects-section {
-        margin-top: 80rem;
+        margin-top: 3rem;
     }
     
     .projects-section h3 {
@@ -661,7 +704,7 @@ footer {
     }
     
     .contact-section {
-        margin-top: 0;
+        margin-top: 2rem;
     }
     
     .box-icons {
@@ -706,31 +749,8 @@ footer {
         right: -4%; 
         top: 17%;
     }
+    
+    header {
+        padding: 1rem;
+    }
 }
-
-
-
-         
- 
-
-
-         
-         
- 
-
-    
-        
-
-
-
-    
-
-
-
-
-
-
-
-        
-
-
